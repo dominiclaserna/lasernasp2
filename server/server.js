@@ -52,7 +52,7 @@ const notificationRoutes = require('./routes/notificationRoutes');
 app.use('/notifications', notificationRoutes); // Mount notificationRoutes at /notifications path
 
 // Start the server
-const PORT = process.env.PORT || 3001;
+const PORT = 3001;
 app.listen(PORT, () => {
     console.log(process.env)
     console.log(`Server is running on port ${PORT}`);
