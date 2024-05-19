@@ -54,6 +54,5 @@ app.use('/notifications', notificationRoutes); // Mount notificationRoutes at /n
 // Start the server
 const PORT = 3001;
 app.listen(PORT, () => {
-    console.log(process.env)
     console.log(`Server is running on port ${PORT}`);
 });
