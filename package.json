@@ -46,5 +46,8 @@
   },
   "devDependencies": {
     "concurrently": "^8.2.2"
+  },
+  "devServer": {
+    "allowedHosts": "all"
   }
 }
