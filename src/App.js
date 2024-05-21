@@ -10,10 +10,10 @@ import UserDetails from './components/UserDetails';
 import BillList from './components/BillList';
 import MessageList from './components/MessageList';
 import Navbar from './components/Navbar';
-import AnnouncementsForm from './components/AnnouncementsForm'; // Import the AnnouncementsForm component
+import AnnouncementsForm from './components/AnnouncementsForm'; 
 import AnnouncementsList from './components/AnnouncementLists.js';
-import NotificationBell from './components/NotificationBell'; // Import the NotificationBell component
-
+import NotificationBell from './components/NotificationBell'; 
+import BillSummary from './components/BillSummary';
 function App() {
   const loggedInUserEmail = localStorage.getItem('loggedInUserEmail');
 
@@ -37,6 +37,7 @@ function App() {
             <Route path="/bills" element={<BillList />} />
             <Route path="/messages" element={<MessageList />} />
             <Route path="/announcements" element={<AnnouncementsList />} />
+            <Route path="/summary" element={<BillSummary />} />
           </Routes>
         </div>
       </div>
@@ -70,7 +71,6 @@ function SignupPage() {
 function LoginPage() {
   return (
     <>
-      <h1 style={{ color: '#fff' }}>Login Page</h1>
       <LoginForm />
     </>
   );

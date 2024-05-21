@@ -34,3 +34,10 @@
   text-align: right;
   align-self: flex-end;
 }
+.login-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+  text-align: center;
+}

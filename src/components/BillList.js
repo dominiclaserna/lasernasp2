@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import './BillList.css'; // Import BillList stylesheet
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import './BillList.css';
 
 const BillList = () => {
     const [bills, setBills] = useState([]);
@@ -50,7 +52,7 @@ const BillList = () => {
         }
     };
 
-    const currentDate = new Date(); // Get the current date
+    const currentDate = new Date();
 
     const unpaidOverdueBills = bills.filter((bill) => {
         return !bill.paid && new Date(bill.dueDate) < currentDate;
@@ -74,12 +76,15 @@ const BillList = () => {
 
             if (response.ok) {
                 console.log('Bill marked as paid successfully');
+                toast.success('Bill marked as paid successfully');
                 fetchBills();
             } else {
                 console.error('Failed to mark bill as paid');
+                toast.error('Failed to mark bill as paid');
             }
         } catch (error) {
             console.error('Error marking bill as paid:', error);
+            toast.error('Error marking bill as paid');
         }
     };
 
@@ -96,14 +101,16 @@ const BillList = () => {
             });
 
             if (response.ok) {
-                console.log('Bill payment updated successfully');
+                console.log('Bill payment submitted successfully');
+                toast.success('Bill payment submitted successfully');
                 fetchBills();
-                setPaymentRefNumbers((prev) => ({ ...prev, [billId]: '' }));
             } else {
                 console.error('Failed to update bill payment');
+                toast.error('Failed to update bill payment');
             }
         } catch (error) {
             console.error('Error updating bill payment:', error);
+            toast.error('Error updating bill payment');
         }
     };
 
@@ -137,11 +144,14 @@ const BillList = () => {
     );
 
     if (!isLoggedIn) {
-        return <p>Please log in to view your bills.</p>;
+        return         <div className="login-message">
+        <h3>Please log in to view your bills.</h3>
+      </div>;
     }
 
     return (
         <div className="bill-list-container">
+            <ToastContainer />
             {userType === 'manager' && (
                 <Link to="/create-bill" className="create-bill-button">
                     Create Bill

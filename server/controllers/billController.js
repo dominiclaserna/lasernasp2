@@ -60,19 +60,29 @@ exports.getAllBills = async (req, res) => {
     }
 };
 
-// Controller function to update bill paid status and payment reference number
 exports.updateBillPaidStatus = async (req, res) => {
     const { billId } = req.params;
     const { paid, paymentRefNumber } = req.body; // Ensure paymentRefNumber is correctly extracted from the request body
 
     try {
+        // Update the bill's paid status in the database
         const updatedBill = await Bill.findByIdAndUpdate(billId, { paid, paymentRefNumber }, { new: true });
+        const newNotification = await Notification.create({
+            notificationOwner: updatedBill.biller,
+            about: 'an updated bill',
+            seen: false // Initially set as unseen
+        });
+
+        console.log('Notification created:', newNotification); // Log the newly created notification
+        res.status(200).json(updatedBill);
         if (!updatedBill) {
             return res.status(404).json({ error: 'Bill not found' });
         }
-        res.status(200).json(updatedBill);
+
+        // Create a notification for the biller
+
     } catch (error) {
-        console.error('Error updating bill:', error);
+        console.error('Error updating bill and creating notification:', error);
         res.status(500).json({ error: 'Internal server error' });
     }
 };

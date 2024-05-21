@@ -1,73 +1,9 @@
-.bill-list-container {
-    padding: 20px;
-    background-color: #64066d;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    border: 2px solid #fff; /* Added white border */
-}
-
-.bill-table {
-    width: 100%;
-    border-collapse: collapse;
-    background-color: #64066d; /* Changed table background color */
-}
-
-.bill-table th, .bill-table td {
-    padding: 10px;
-    border: 1px solid #ccc;
-    text-align: center;
-}
-
-.bill-table th {
-    background-color: #64066d;
-}
-
-.bill-table tr:nth-child(even) {
-    background-color: #64066d;
-}
-
-.bill-table td button, .bill-table td input {
-    margin: 5px;
-    padding: 8px 12px;
-    font-size: 14px;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-}
-
-.bill-table td button {
-    background-color: #007bff;
-    color: #fff;
-}
-
-/* Styles for the Create Bill button */
-.create-bill-button {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    text-align: center;
-    text-decoration: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.create-bill-button:hover {
-    background-color: #218838;
-}
-
-/* BillSummary section with white border */
 .bill-summary-container {
     padding: 20px;
     background-color: #64066d;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     color: #fff; /* Ensure text color is white for better readability */
-    border: 2px solid #fff; /* Added white border */
 }
 
 .summary-table {
@@ -129,10 +65,3 @@
         width: 100%;
     }
 }
-.login-message {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 50vh;
-    text-align: center;
-  }

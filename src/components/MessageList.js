@@ -5,11 +5,14 @@ import './MessageList.css';
 const MessageList = () => {
   const [messages, setMessages] = useState([]);
   const loggedInUserEmail = localStorage.getItem('loggedInUserEmail');
+  const [isLoggedIn, setIsLoggedIn] = useState(Boolean(loggedInUserEmail));
 
   useEffect(() => {
-    fetchMessages();
-    scrollToBottom(); // Scroll to the bottom of the message list container after content has loaded
-  }, []);
+    if (isLoggedIn) {
+      fetchMessages();
+      scrollToBottom(); // Scroll to the bottom of the message list container after content has loaded
+    }
+  }, [isLoggedIn]);
 
   const fetchMessages = async () => {
     try {
@@ -53,22 +56,30 @@ const MessageList = () => {
 
   return (
     <div className="message-list-container">
-      <div className="message-list">
-        {messages.map((message) => (
-          <div
-            key={message._id}
-            className={`message ${message.sender === loggedInUserEmail ? 'message-right' : 'message-left'}`}
-          >
-            <p><strong>{message.subject}</strong></p>
-            <p>{message.body}</p>
-            <p><em>From: {message.sender}</em></p>
-            <p><em>To: {message.receiver}</em></p>
+      {isLoggedIn ? (
+        <div className="message-list-content">
+          <div className="message-list">
+            {messages.map((message) => (
+              <div
+                key={message._id}
+                className={`message ${message.sender === loggedInUserEmail ? 'message-right' : 'message-left'}`}
+              >
+                <p><strong>{message.subject}</strong></p>
+                <p>{message.body}</p>
+                <p><em>From: {message.sender}</em></p>
+                <p><em>To: {message.receiver}</em></p>
+              </div>
+            ))}
           </div>
-        ))}
+          <div className="message-form-container">
+            <MessageForm onMessageSubmit={handleMessageSubmit} />
+          </div>
+        </div>
+      ) : (
+        <div className="login-message">
+        <h3>Please log in to view your messages.</h3>
       </div>
-      <div className="message-form-container">
-        <MessageForm onMessageSubmit={handleMessageSubmit} />
-      </div>
+      )}
     </div>
   );
 };
